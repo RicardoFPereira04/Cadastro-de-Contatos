@@ -1,14 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Cadastro_de_Contatos.Models;
+using Cadastro_de_Contatos.Repositorio;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace Cadastro_de_Contatos.Controllers
 {
-    public class Contato : Controller
+    public class ControllerEquipamentos : Controller
     {
+        private readonly IEquipamentoRepositorio _equipamentoRepositorio;
+        public ControllerEquipamentos(IEquipamentoRepositorio equipamentoRepositorio)
+        {
+
+        }
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Criar()
+        public IActionResult Adicionar()
         {
             return View();
         }
@@ -16,9 +24,16 @@ namespace Cadastro_de_Contatos.Controllers
         {
             return View();
         }
-        public IActionResult ApagarConfirmacao()
+        public IActionResult Apagar()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Criar(ContatoModel equipamento)
+        {
+            _equipamentoRepositorio.Adicionar(equipamento);
+            return RedirectToAction("Index");
+        }
     }
 }
+
