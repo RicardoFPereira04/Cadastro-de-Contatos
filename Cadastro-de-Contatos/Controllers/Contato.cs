@@ -5,18 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cadastro_de_Contatos.Controllers
 {
-    public class ControllerEquipamentos : Controller
+    public class Contato : Controller
     {
         private readonly IEquipamentoRepositorio _equipamentoRepositorio;
-        public ControllerEquipamentos(IEquipamentoRepositorio equipamentoRepositorio)
+        public Contato(IEquipamentoRepositorio equipamentoRepositorio)
         {
-
+            _equipamentoRepositorio = equipamentoRepositorio;
         }
         public IActionResult Index()
         {
-            return View();
+            List<ContatoModel> contatos = _equipamentoRepositorio.BuscarTodos();
+            return View(contatos);
         }
-        public IActionResult Adicionar()
+        public IActionResult Criar()
         {
             return View();
         }
@@ -24,7 +25,7 @@ namespace Cadastro_de_Contatos.Controllers
         {
             return View();
         }
-        public IActionResult Apagar()
+        public IActionResult ApagarConfirmacao()
         {
             return View();
         }

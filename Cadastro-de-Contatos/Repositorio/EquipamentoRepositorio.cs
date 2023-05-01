@@ -6,16 +6,21 @@ namespace Cadastro_de_Contatos.Repositorio
 {
     public class EquipamentoRepositorio : IEquipamentoRepositorio
     {
-        private readonly BancoContext _bancoContext;
+        private readonly AppDbContext _bancoContext;
         public EquipamentoRepositorio(AppDbContext appdbcontext)
         {
             _bancoContext = appdbcontext;
         }
         public ContatoModel Adicionar(ContatoModel equipamento)
         {
-            _bancoContext.Equipamento.Add(equipamento);
+            _bancoContext.Equipamentos.Add(equipamento);
             _bancoContext.SaveChanges();
             return equipamento;
+        }
+
+        public List<ContatoModel> BuscarTodos()
+        {
+            return _bancoContext.Equipamentos.ToList();
         }
     }
 }

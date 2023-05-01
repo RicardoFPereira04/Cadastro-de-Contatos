@@ -1,4 +1,5 @@
 using Cadastro_de_Contatos.Context;
+using Cadastro_de_Contatos.Repositorio;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -20,6 +21,7 @@ namespace WebApplication2
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer
                 ("Data Source=DESKTOP-GFK2EGS\\;Initial Catalog=TesteDb; Integrated Security=True; Encrypt=False"));
+            builder.Services.AddScoped<IEquipamentoRepositorio, EquipamentoRepositorio>();
 
 
             builder.Services.AddControllersWithViews();
